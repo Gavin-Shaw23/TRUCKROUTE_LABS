@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model User
+
+<div class="text-center">
+    <h1 class="display-4">Truck Route Management System</h1>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>@Html.Raw(@ViewBag.Message)</strong>
+    </div>
+}
+
+@if (Model == null)
+{  
+    <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Sign Up</div>
+                <div class="card-body">
+                    <form asp-action="SignUp" asp-controller="Home" method="post">
+                        <div class="form-group">
+                            <label asp-for="First_name">First Name:</label>
+                            <input asp-for="First_name" class="form-control" required />
+                            <span asp-validation-for="First_name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Last_name">Last Name:</label>
+                            <input asp-for="Last_name" class="form-control" required />
+                            <span asp-validation-for="Last_name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email_address">Email:</label>
+                            <input asp-for="Email_address" class="form-control" type="email" required />
+                            <span asp-validation-for="Email_address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Phone_number">Phone Number (Format: 999-999-9999):</label>
+                            <input asp-for="Phone_number" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                            <span asp-validation-for="Phone_number" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password">Password:</label>
+                            <input asp-for="Password" class="form-control" type="password" required />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">Confirm Password:</label>
+                            <input asp-for="ConfirmPassword" class="form-control" type="password" required />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div><br/>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                Already have an account? <a asp-controller="Home" asp-action="LoginPage">Login here</a>.
+            </div>
+
+            </div>
+        </div>
+    </div>
+} else
+{
+    <div class="text-center mb-4">
+        <h2>Welcome, @Model.First_name @Model.Last_name!</h2>
+        <h3>Go to the <a asp-controller="Home" asp-action="Dashboard">Dashboard</a>.</h3/>
+    </div>
+}

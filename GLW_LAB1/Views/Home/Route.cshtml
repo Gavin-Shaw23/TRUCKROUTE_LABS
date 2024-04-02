@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Routes";
+}
+@model GLW_LAB1.Models.ViewModel.TruckRouteViewModel
+
+
+<div class="text-center">
+    <h1 class="display-4">Truck Route Management System</h1>
+</div>
+
+<div class="container mt-4">
+    <h1>Routes</h1>
+
+    <h2>Add New Route</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="RoutePage" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <label asp-for="Route.Route_name">Origin:</label>
+                    <input asp-for="Route.Route_name" class="form-control" required>
+                    <span asp-validation-for="Route.Route_name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Route.Destination">Destination:</label>
+                    <input asp-for="Route.Destination" class="form-control" required>
+                    <span asp-validation-for="Route.Destination" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Route.R_length">Distance:</label>
+                    <input asp-for="Route.R_length" class="form-control" required>
+                    <span asp-validation-for="Route.R_length" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Route.R_pay_per_km">Pay per KM:</label>
+                    <input asp-for="Route.R_pay_per_km" class="form-control" required>
+                    <span asp-validation-for="Route.R_pay_per_km" class="text-danger"></span>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Add Route</button>
+            </form>
+        </div>
+    </div><br/>
+
+    
+    <h2>Existing Routes</h2>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Route Number</th>
+                        <th>Route Name</th>
+                        <th>Length</th>
+                        <th>Pay Per Km</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var route in Model.Routes)
+                    {
+                        <tr>
+                            <td>@route.Route_name</td>
+                            <td>@route.Route_number</td>
+                            <td>@route.R_length</td>
+                            <td>@route.R_pay_per_km</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+   
+</div>

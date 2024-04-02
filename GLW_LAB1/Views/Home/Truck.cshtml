@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Trucks";
+}
+@model GLW_LAB1.Models.ViewModel.TruckRouteViewModel
+
+
+<div class="text-center">
+    <h1 class="display-4">
+
+    </h1>
+</div>
+
+<div class="container mt-4">
+    <h1>Trucks</h1>
+
+    
+    <h2>Add New Truck</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="TruckPage" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <label asp-for="Truck.Truck_num">Truck Number:</label>
+                    <input asp-for="Truck.Truck_num" class="form-control" required />
+                    <span asp-validation-for="Truck.Truck_num" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Truck.T_make">Make:</label>
+                    <input asp-for="Truck.T_make" class="form-control" required />
+                    <span asp-validation-for="Truck.T_make" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Truck.T_model">Model:</label>
+                    <input asp-for="Truck.T_model" class="form-control" required />
+                    <span asp-validation-for="Truck.T_model" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Truck.Route_number">Route Number:</label>
+                    <input asp-for="Truck.Route_number" class="form-control" required />
+                    <span asp-validation-for="Truck.Route_number" class="text-danger"></span>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Add Truck</button>
+            </form>
+
+        </div>
+    </div><br/>
+
+    
+    <h2>Existing Trucks</h2>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Truck ID</th>
+                        <th>Model</th>
+                        <th>Make</th>
+                        <th>Route Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var truck in Model.Trucks)
+                    {
+                        <tr>
+                            <td>@truck.Truck_num</td>
+                            <td>@truck.T_model</td>
+                            <td>@truck.T_make</td>
+                            <td>@truck.Route_number</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+</div>

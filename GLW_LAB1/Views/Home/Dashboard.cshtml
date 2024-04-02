@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+@model GLW_LAB1.Models.ViewModel.TruckRouteViewModel
+
+
+<div class="text-center">
+    <h1 class="display-4">Truck Route Management System</h1>
+</div>
+
+<div class="text-center mb-4">
+    <h2>Welcome, @Model.name!</h2>
+    <p>Email: @Model.email</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-gray">
+    <span class="navbar-brand">Truck Route Management System</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-action="TruckPage">Add Truck</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="RoutePage">Add Route</a>
+            </li>
+        </ul>
+        <form asp-action="Logout" asp-controller="Home" method="post" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Out</button>
+        </form>
+    </div>
+</nav>
+
+<br />
+<h2>Trucks</h2>
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Truck ID</th>
+                    <th>Model</th>
+                    <th>Make</th>
+                    <th>Route Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var truck in Model.Trucks)
+                {
+                    <tr>
+                        <td>@truck.Truck_num</td>
+                        <td>@truck.T_model</td>
+                        <td>@truck.T_make</td>
+                        <td>@truck.Route_number</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<h2>Routes</h2>
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Route Number</th>
+                    <th>Route Name</th>
+                    <th>Route Length</th>
+                    <th>Pay Per Km</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var route in Model.Routes)
+                {
+                    <tr>
+                        <td>@route.Route_number</td>
+                        <td>@route.Route_name</td>
+                        <td>@route.R_length</td>
+                        <td>@route.R_pay_per_km</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
